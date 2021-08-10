@@ -1,10 +1,26 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Image, StyleSheet, Text } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { styles } from '../theme/appTheme';
 
 export const HomeScreen = () => {
+
+    const { top } = useSafeAreaInsets();
     return (
-        <View>
-            <Text>Home Screen</Text>
-        </View>
+        <>
+            <Image
+                source={ require('../assets/pokebola.png') }
+                style={ styles.pokebolaBG }
+            />
+            <Text
+                style={{
+                    ...styles.globalMargin,
+                    ...styles.title,
+                    top: top + 20
+                }}
+            >
+                Pokedex
+            </Text>
+        </>
     )
 }
