@@ -7,7 +7,7 @@ export const usePokemonPaginated = () => {
     const [simplePokemonList, setSimplePokemonList] = useState<SimplePokemon[]>([])
     const nextPage = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
 
-    const loadPokemon = async() => {
+    const loadPokemons = async() => {
         
         const resp = await pokemonApi.get<PokemonPaginatedResponse>(nextPage.current);
         nextPage.current = resp.data.next;
@@ -28,10 +28,11 @@ export const usePokemonPaginated = () => {
     }
 
     useEffect(() => {
-        loadPokemon();
+        loadPokemons();
     }, [])
 
     return {
-        simplePokemonList
+        simplePokemonList,
+        loadPokemons
     }
 }
