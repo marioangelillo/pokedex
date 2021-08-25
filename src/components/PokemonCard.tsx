@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { TouchableOpacity, View, StyleSheet, Text, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity, View, StyleSheet, Text, Image, Dimensions } from 'react-native';
+import ImageColors from 'react-native-image-colors';
+
 import { FadeInImage } from './FadeInImage';
 import { SimplePokemon } from '../interfaces/pokemonInterfaces';
-import { Dimensions } from 'react-native';
-import ImageColors from 'react-native-image-colors';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -15,6 +16,8 @@ export const PokemonCard = ({ pokemon }: Props ) => {
 
     const [bgColor, setBgColor] = useState('grey');
     const isMounted = useRef(true)
+    
+    const navigation = useNavigation<any>(); // el tipo any es solo para q deje de mostrar el error
 
     useEffect(() => {
         
@@ -35,7 +38,15 @@ export const PokemonCard = ({ pokemon }: Props ) => {
 
     return (
     
-        <TouchableOpacity>
+        <TouchableOpacity
+            activeOpacity={ 0.8 }
+            onPress={ 
+                () => navigation.navigate('PokemonScreen', {
+                    simplePokemon: pokemon, 
+                    color: bgColor 
+                }) 
+            }
+        >
             <View
                 style={{
                     ...styles.cardContainer,
