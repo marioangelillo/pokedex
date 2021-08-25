@@ -69,7 +69,7 @@ export const PokemonScreen = ({ navigation, route }: Props) => {
                     </View>
                 )
                 :
-                    <PokemonDetails />
+                    <PokemonDetails pokemon={ fullPokemon } />
                 
             }
             
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
     headerContainer: {
         height: 370,
         alignItems: 'center',
+        zIndex: 999,
         borderBottomRightRadius: 1000,
         borderBottomLeftRadius: 1000
     },
